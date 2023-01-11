@@ -1,5 +1,5 @@
 import React from "react";
-
+import DayList from "./DayList";
 import "components/Application.scss";
 const days = [
   {
