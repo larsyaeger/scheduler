@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import DayList from "./DayList";
 import "components/Application.scss";
-const days = [
+const daysArray = [
   {
     id: 1,
     name: "Monday",
@@ -31,7 +31,7 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
+            days={daysArray}
             day={dayState}
             setDay={setDayState}
           />
