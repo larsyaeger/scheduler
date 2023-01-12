@@ -10,6 +10,7 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
+import Status from "components/Appointment/Status";
 import "index.scss";
 
 import Button from "components/Button";
@@ -160,3 +161,4 @@ storiesOf("Appointment", module)
       onCancel={action('onCancel')}
     />
   ))
+  .add('Status', () => <Status message="Deleteing..."/>)
