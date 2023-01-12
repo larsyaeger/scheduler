@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import DayList from "./DayList";
+import 'components/Appointment';
 import "components/Application.scss";
 const daysArray = [
   {
