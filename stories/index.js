@@ -124,18 +124,20 @@ storiesOf("InterviewerList", module)
   .add("Initial", () => (
     <InterviewerList
       interviewers={interviewers}
+      setInterviewer={action("onChange")}
     />
   ))
   .add("Selected", () => (
     <InterviewerList
       interviewers={interviewers}
       interviewer={3}
+      setInterviewer={action("onChange")}
     />
   ))
   .add("Clickable", () => (
     <InterviewerList
       interviewers={interviewers}
-      setInterviewer={action("setInterviewer")}
+      setInterviewer={action("onChange")}
     />
   ));
 storiesOf("Appointment", module)
@@ -170,19 +172,19 @@ storiesOf("Appointment", module)
       onClose={action('onClose')}
     />
   ))
-  .add('Create', () => {
+  .add('Create', () => (
     <Form
-    interviewers={['Gary']}
+    interviewers={interviewers}
     onSave={action('onSave')}
     onCancel={action('onCancel')}
     />
-  })
-  .add('Edit', () => {
+  ))
+  .add('Edit', () => (
     <Form
     student="Lars Yaeger"
     interviewer={3}
-    interviewers={['Gary', 'John', 'Bob', 'Carrie', 'Lasha']}
+    interviewers={interviewers}
     onSave={action('onSave')}
     onCancel={action('onCancel')}
     />
-  })
+  ));
