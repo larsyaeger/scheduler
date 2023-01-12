@@ -1,5 +1,5 @@
 import React from "react";
-
+import Appointment from "components/Appointment/index.js";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import DayListItem from "components/DayListItem";
