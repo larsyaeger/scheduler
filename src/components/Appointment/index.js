@@ -13,6 +13,7 @@ export default function Appointment(props) {
   const CREATE = "CREATE";
   const SAVING = 'SAVING';
   const CONFIRM = 'CONFIRM';
+  const DELETE = 'DELETE';
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -32,7 +33,7 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    transition(SAVING);
+    transition(DELETE);
     setTimeout(() => {
       props.deleteAppointment(props.id, interview)
       transition(EMPTY)
@@ -64,6 +65,11 @@ export default function Appointment(props) {
         message="Are you sure you want to delete this appointment"
         onCancel={back}
         onConfirm={deleteApp}
+        />
+      )}
+      {mode === DELETE && (
+        <Status
+        message="Deleting appointment"
         />
       )}
 
