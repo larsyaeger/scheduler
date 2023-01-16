@@ -11,35 +11,53 @@ export default function Application(props) {
     day: 'Monday',
     days: [],
     appointments: {}
-  })
+  });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const setDay = day => setState(prev => ({
     ...prev,
     day
-  }))
+  }));
 
-  useEffect(()=>{
+  useEffect(() => {
     Promise.all([
 
       axios.get('/api/days'),
       axios.get('/api/appointments'),
       axios.get('/api/interviewers')
 
-    ]).then((all)=>{
+    ]).then((all) => {
 
-      const interviewers = all[2].data
-      const days = all[0].data
-      const appointments = all[1].data
+      const interviewers = all[2].data;
+      const days = all[0].data;
+      const appointments = all[1].data;
 
-      setState(prev=>({
+      setState(prev => ({
 
         ...prev,
         days,
         appointments,
         interviewers
-      }))
-    })
-  },[])
+      }));
+    });
+  }, []);
+
+  function bookInterview(id, interview) {
+    //console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments});
+      //console.log(id)/
+    axios.put(`/api/appointments/${id}`, appointment)
+    //transition(SHOW);
+  }
 
 
   return (
@@ -67,15 +85,15 @@ export default function Application(props) {
       <section className="schedule">
         {Object.values(dailyAppointments).map((appointment) => {
           const interview = getInterview(state, appointment.interview);
-          const dailyInterviewers = getInterviewersForDay(state, state.day)
+          const dailyInterviewers = getInterviewersForDay(state, state.day);
           return (
             <Appointment
               key={appointment.id}
-              
+              bookInterview={bookInterview}
               id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-        interviewers={dailyInterviewers}
+              time={appointment.time}
+              interview={interview}
+              interviewers={dailyInterviewers}
             />
           );
         })}
