@@ -14,10 +14,10 @@ export default function useVisualMode(initial){
     }
     setHistory(newHistory);
   }
-  const back = () => {
+  const back = function(){
     if (history.length < 2) {
       setHistory('Cant go back more')
-      return
+      return;
     }
     setMode(history[history.length - 2]);
     const newHistory = [...history];
@@ -25,5 +25,5 @@ export default function useVisualMode(initial){
     setHistory(newHistory);
 
   }
-  return { mode, transition, back }; // same as {mode: mode}
+  return { mode, transition, back }; 
 }
