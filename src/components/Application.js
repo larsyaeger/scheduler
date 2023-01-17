@@ -75,8 +75,6 @@ export default function Application(props) {
     axios.delete(`/api/appointments/${id}`, appointment)
     //transition(SHOW);
   }
-
-
   return (
     <main className="layout">
       <section className="sidebar">
