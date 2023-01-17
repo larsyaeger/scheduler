@@ -3,6 +3,7 @@ import DayList from "./DayList";
 import Appointment from './Appointment';
 import "components/Application.scss";
 import axios from "axios";
+
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
@@ -17,7 +18,6 @@ export default function Application(props) {
     ...prev,
     day
   }));
-
   useEffect(() => {
     Promise.all([
 
