@@ -7,6 +7,7 @@ import useVisualMode from 'hooks/useVisualMode';
 import Form from './Form';
 import Status from './Status';
 import Confirm from './Confirm';
+import Error from './Error';
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -15,6 +16,8 @@ export default function Appointment(props) {
   const CONFIRM = 'CONFIRM';
   const DELETE = 'DELETE';
   const EDIT = 'EDIT';
+  const ERROR_SAVE = 'ERROR_SAVE';
+  const ERROR_DELETE = 'ERROR_DELETE';
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -24,21 +27,26 @@ export default function Appointment(props) {
       interviewer
     };
     transition(SAVING);
-    setTimeout(function() {
-      props.bookInterview(props.id, interview); // runs first
-      transition(SHOW); // runs second
-    }, 1000);
+    props
+      .bookInterview(props.id, interview)
+      .then(()=>{ 
+        transition(SHOW)})
+      .catch(error =>{
+        transition(ERROR_SAVE, true);
+      })
   }
   function deleteApp(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
-    transition(DELETE);
-    setTimeout(() => {
-      props.deleteAppointment(props.id, interview);
-      transition(EMPTY);
-    }, 1000);
+    transition(DELETE, true);
+    props
+    .deleteAppointment(props.id, interview)
+    .then(()=>{
+      transition(EMPTY)})
+    .catch(error => {
+      transition(ERROR_DELETE, true)})
   }
   return (
     <article className="appointment">
@@ -81,6 +89,18 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer.id}
           onCancel={back}
           onSave={save}
+        />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error
+        message="ERROR could not save appointment"
+        onClose={back}
+        />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+        message="ERROR could not delete appointment"
+        onClose={back}
         />
       )}
 

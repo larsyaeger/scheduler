@@ -55,7 +55,8 @@ export default function Application(props) {
       ...state,
       appointments});
       //console.log(id)/
-    axios.put(`/api/appointments/${id}`, appointment)
+    
+    return axios.put(`/api/appointments/${id}`, appointment)
     //transition(SHOW);
   }
   function deleteAppointment(id, interview) {
@@ -72,7 +73,8 @@ export default function Application(props) {
       ...state,
       appointments});
       //console.log(id)/
-    axios.delete(`/api/appointments/${id}`, appointment)
+      console.log('before axios');
+    return axios.delete(`/api/appointments/${id}`, appointment)
     //transition(SHOW);
   }
   return (
