@@ -3,6 +3,7 @@ import DayList from "./DayList";
 import Appointment from './Appointment';
 import "components/Application.scss";
 import axios from "axios";
+
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
@@ -17,7 +18,6 @@ export default function Application(props) {
     ...prev,
     day
   }));
-
   useEffect(() => {
     Promise.all([
 
@@ -58,8 +58,23 @@ export default function Application(props) {
     axios.put(`/api/appointments/${id}`, appointment)
     //transition(SHOW);
   }
-
-
+  function deleteAppointment(id, interview) {
+    //console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments});
+      //console.log(id)/
+    axios.delete(`/api/appointments/${id}`, appointment)
+    //transition(SHOW);
+  }
   return (
     <main className="layout">
       <section className="sidebar">
@@ -94,6 +109,7 @@ export default function Application(props) {
               time={appointment.time}
               interview={interview}
               interviewers={dailyInterviewers}
+              deleteAppointment={deleteAppointment}
             />
           );
         })}
