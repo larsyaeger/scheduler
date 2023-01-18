@@ -17,18 +17,18 @@ export default function Form(props){
     
   }
 
-  function validate() {
-    if (value === '') {
-      setError('Student name cannot be blank');
-      return;
-    }
-    setError('')
-    // if (interviewer === null) {
-    //   setError('Please select an interviewer');
-    //   return;
-    // }
-    props.onSave(value, interviewer)
-  }
+  // function validate() {
+  //   if (value === '') {
+  //     setError('Student name cannot be blank');
+  //     return;
+  //   }
+  //   setError('')
+  //   // if (interviewer === null) {
+  //   //   setError('Please select an interviewer');
+  //   //   return;
+  //   // }
+  //   props.onSave(value, interviewer)
+  // }
   return(<main className="appointment__card appointment__card--create">
   <section className="appointment__card-left">
     <form autoComplete="off">
