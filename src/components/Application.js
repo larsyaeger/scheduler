@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+//import React, { useState, useEffect } from "react";
+import React from 'react';
 import DayList from "./DayList";
 import Appointment from './Appointment';
 import "components/Application.scss";
-import axios from "axios";
+//import axios from "axios";
 import useApplicationData from "hooks/useApplicationData";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
