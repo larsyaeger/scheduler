@@ -18,12 +18,12 @@ export default function Form(props){
   }
 
   // function validate() {
-  //   if (value === '') {
+  //   if (props.value === '') {
   //     setError('Student name cannot be blank');
   //     return;
   //   }
   //   setError('')
-  //   // if (interviewer === null) {
+  //   // if (props.interviewer === null) {
   //   //   setError('Please select an interviewer');
   //   //   return;
   //   // }
