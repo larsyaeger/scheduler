@@ -62,6 +62,7 @@ export default function useApplicationData() {
       }
 
       if (!state.appointments[id].interview) {
+        
         day = {
           ...state.days[appointmentDay],
           spots: state.days[appointmentDay].spots - 1
@@ -84,8 +85,8 @@ export default function useApplicationData() {
   function deleteAppointment(id, interview) {
     const appointment = {
       ...state.appointments[id],
-      //interview: { ...interview }
-      interview:null
+      interview: { ...interview }
+      //interview:null
     };
     const appointments = {
       ...state.appointments,
@@ -105,7 +106,7 @@ export default function useApplicationData() {
       setState({...state, appointments, days });
     });
   }
-  
+
   return {
     state,
     setDay,
