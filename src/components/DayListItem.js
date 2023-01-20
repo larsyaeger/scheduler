@@ -22,7 +22,7 @@ const formattedMessage = formatSpots(props.spots)
   });
 
   return (
-    <li className={dayClass }onClick={() => props.setDay(props.name)}>
+    <li className={dayClass }onClick={() => props.setDay(props.name)} data-testid="day">
       <h2 className={dayClass}>{props.name}</h2>
       <h3 className={dayClass}>{formattedMessage}</h3>
     </li>
