@@ -49,7 +49,7 @@ export default function Appointment(props) {
       transition(ERROR_DELETE, true)})
   }
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
@@ -68,7 +68,9 @@ export default function Appointment(props) {
         />
       )}
       {mode === SAVING && (
-        <Status />
+        <Status 
+        message="Saving"
+        />
       )}
       {mode === CONFIRM && (
         <Confirm
