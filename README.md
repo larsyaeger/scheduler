@@ -21,3 +21,10 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## SCREENSHOTS
+!["Unaltered screen with default appointments"](https://github.com/larsyaeger/scheduler/blob/master/DOCS/Screenshot1.png?raw=true)
+
+!["Adding an appointment"](https://github.com/larsyaeger/scheduler/blob/master/DOCS/Screenshot2.png?raw=true)
+
+!["After clicking delete button we get a confirmation"](https://github.com/larsyaeger/scheduler/blob/master/DOCS/Screenshot3.png?raw=true)
