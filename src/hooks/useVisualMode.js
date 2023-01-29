@@ -5,8 +5,7 @@ export default function useVisualMode(initial){
   const transition = (newMode, replace = false) => {
 
       if(replace){
-        setHistory(prev => prev.slice(0, -1));
-        setHistory(prev => [...prev, newMode]);
+        setHistory(prev => [...prev.slice(0, prev.length - 1), mode])
         }else{
           setHistory(prev => [...prev, newMode]); 
         }
