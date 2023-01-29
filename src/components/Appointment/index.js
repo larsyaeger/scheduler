@@ -13,6 +13,7 @@ export default function Appointment(props) {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = 'SAVING';
+  const regex = /[a-zA-Z]/;
   const CONFIRM = 'CONFIRM';
   const DELETE = 'DELETE';
   const EDIT = 'EDIT';
@@ -22,6 +23,9 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
   function save(name, interviewer) {
+    if (regex.test(name) !== true){
+      alert('Name cant be empty, and must contain at least 1 letter')
+    } else if (regex.test(name) === true) {
     const interview = {
       student: name,
       interviewer
@@ -34,6 +38,7 @@ export default function Appointment(props) {
       .catch(error =>{
         transition(ERROR_SAVE, true);
       })
+    }
   }
   function deleteApp(name, interviewer) {
     const interview = {
