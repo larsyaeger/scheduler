@@ -82,10 +82,10 @@ export default function useApplicationData() {
     })
   }
 
-  function deleteAppointment(id, interview) {
+  function deleteAppointment(id) {
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
+      interview: null 
     };
     const appointments = {
       ...state.appointments,
@@ -105,6 +105,8 @@ export default function useApplicationData() {
       setState({...state, appointments, days });
     });
   }
+  // debugging for problems with state change which happens a lot!
+  // useEffect(()=> {console.log('useEffect state', state)}, [state])
 
   return {
     state,
