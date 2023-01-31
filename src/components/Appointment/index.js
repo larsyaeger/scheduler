@@ -9,6 +9,7 @@ import Status from './Status';
 import Confirm from './Confirm';
 import Error from './Error';
 export default function Appointment(props) {
+  //these are the 'modes' that will be changed into on certain actions, paired with transition()
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -29,11 +30,12 @@ export default function Appointment(props) {
     transition(SAVING);
     props
       .bookInterview(props.id, interview)
-      .then(()=>{ 
-        transition(SHOW)})
-      .catch(error =>{
-        transition(ERROR_SAVE, true);
+      .then(() => {
+        transition(SHOW);
       })
+      .catch(error => {
+        transition(ERROR_SAVE, true);
+      });
   }
   function deleteApp(name, interviewer) {
     const interview = {
@@ -42,11 +44,13 @@ export default function Appointment(props) {
     };
     transition(DELETE, true);
     props
-    .deleteAppointment(props.id, interview)
-    .then(()=>{
-      transition(EMPTY)})
-    .catch(error => {
-      transition(ERROR_DELETE, true)})
+      .deleteAppointment(props.id, interview)
+      .then(() => {
+        transition(EMPTY);
+      })
+      .catch(error => {
+        transition(ERROR_DELETE, true);
+      });
   }
   return (
     <article className="appointment" data-testid="appointment">
@@ -68,8 +72,8 @@ export default function Appointment(props) {
         />
       )}
       {mode === SAVING && (
-        <Status 
-        message="Saving"
+        <Status
+          message="Saving"
         />
       )}
       {mode === CONFIRM && (
@@ -95,14 +99,14 @@ export default function Appointment(props) {
       )}
       {mode === ERROR_SAVE && (
         <Error
-        message="ERROR could not save appointment"
-        onClose={back}
+          message="ERROR could not save appointment"
+          onClose={back}
         />
       )}
       {mode === ERROR_DELETE && (
         <Error
-        message="ERROR could not delete appointment"
-        onClose={back}
+          message="ERROR could not delete appointment"
+          onClose={back}
         />
       )}
 

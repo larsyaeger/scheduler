@@ -12,7 +12,7 @@ export default function Application(props) {
 
   const { state, setDay, bookInterview, deleteAppointment } = useApplicationData();
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  
+
   return (
     <main className="layout">
       <section className="sidebar">
