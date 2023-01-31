@@ -1,9 +1,10 @@
+//appointmentNumber and interviewerNumber are shown as not used but removing them causes the app to crash and requires resetting the database
 export function getAppointmentsForDay(state, day) {
   const dayArray = [];
   state.days.forEach((object) => {
     if (object.name === day) {
       object.appointments.forEach(appointment => {
-        for (const [appointmentObject] of Object.entries(state.appointments)) {
+        for (const [appointmentNumber, appointmentObject] of Object.entries(state.appointments)) {
           if (appointmentObject.id === appointment) {
             dayArray.push(appointmentObject);
           }
@@ -27,7 +28,7 @@ export function getInterviewersForDay(state, day) {
   state.days.forEach((object) => {
     if (object.name === day) {
       object.interviewers.forEach(interview => {
-        for (const [interviewerObject] of Object.entries(state.interviewers)) {
+        for (const [interviewerNumber, interviewerObject] of Object.entries(state.interviewers)) {
           if (interviewerObject.id === interview) {
             dayArray.push(interviewerObject);
           }
