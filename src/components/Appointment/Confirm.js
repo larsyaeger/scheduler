@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'components/Button';
+//gets rendered when a user clicks delete icon on SHOW
 export default function Confirm(props) {
 
   return (

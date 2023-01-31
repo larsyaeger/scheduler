@@ -9,7 +9,7 @@ import Status from './Status';
 import Confirm from './Confirm';
 import Error from './Error';
 export default function Appointment(props) {
-  //these are the 'modes' that will be changed into on certain actions, paired with transition()
+  //these are the 'modes' that will be changed into on certain actions, paired with transition(). example: transition(SHOW)
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -19,9 +19,11 @@ export default function Appointment(props) {
   const EDIT = 'EDIT';
   const ERROR_SAVE = 'ERROR_SAVE';
   const ERROR_DELETE = 'ERROR_DELETE';
+  //functions form useVisualMode
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -44,6 +46,7 @@ export default function Appointment(props) {
     };
     transition(DELETE, true);
     props
+    //.deleteAppointment can be found in useApplicationData
       .deleteAppointment(props.id, interview)
       .then(() => {
         transition(EMPTY);
