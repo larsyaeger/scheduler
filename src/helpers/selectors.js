@@ -3,7 +3,7 @@ export function getAppointmentsForDay(state, day) {
   state.days.forEach((object) => {
     if (object.name === day) {
       object.appointments.forEach(appointment => {
-        for (const [appointmentNumber, appointmentObject] of Object.entries(state.appointments)) {
+        for (const [appointmentObject] of Object.entries(state.appointments)) {
           if (appointmentObject.id === appointment) {
             dayArray.push(appointmentObject);
           }
@@ -27,7 +27,7 @@ export function getInterviewersForDay(state, day) {
   state.days.forEach((object) => {
     if (object.name === day) {
       object.interviewers.forEach(interview => {
-        for (const [interviewerNumber, interviewerObject] of Object.entries(state.interviewers)) {
+        for (const [interviewerObject] of Object.entries(state.interviewers)) {
           if (interviewerObject.id === interview) {
             dayArray.push(interviewerObject);
           }
