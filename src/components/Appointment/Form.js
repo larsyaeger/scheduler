@@ -19,8 +19,13 @@ export default function Form(props) {
   };
   //this function makes sure name cannot be blank when creating or editing an appointment
   function validate() {
+    
     if (studentName === "") {
       setError("Student name cannot be blank");
+      return;
+    }
+    if (interviewerName === null) {
+      alert('Please select an interviewer');
       return;
     }
     setError("");
@@ -50,7 +55,7 @@ export default function Form(props) {
     <section className="appointment__card-right">
       <section className="appointment__actions">
         <Button danger onClick={cancel}>Cancel</Button>
-        <Button confirm onClick={event => validate()}>Save</Button>
+        <Button confirm onClick={validate}>Save</Button>
       </section>
     </section>
   </main>
